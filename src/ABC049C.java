@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class ABC049C {
@@ -8,31 +6,26 @@ public class ABC049C {
         String inS = scanner.nextLine();
         scanner.close();
 
-        String[] tWords = { "dream", "dreamer", "erase", "eraser" };
-        String[] lines = new String[]{""};
-
+        StringBuilder s = new StringBuilder(inS);
+        String[] tWords = { "dreamer", "dream", "eraser", "erase" };
         String result = null;
+
         while (result == null) {
-            result = "NO";
-
-            List<String> strings = new ArrayList<String>();
-            for (int i = 0; i < lines.length; i++) {
-                for (int j = 0; j < tWords.length; j++) {
-                    String line = lines[i] + tWords[j];
-                    if (inS.startsWith(line)) strings.add(line);
+            int wordLength = s.length();
+            for (int i = 0; i < tWords.length; i++) {
+                if (s.length() >= tWords[i].length()) {
+                    String lastWord = s.substring(s.length() - tWords[i].length(), s.length());
+                    if (lastWord.equals(tWords[i])) {
+                        s.delete(s.length() - tWords[i].length(), s.length());
+                        break;
+                    }
                 }
             }
 
-            for (String s : strings) {
-                if (inS.equals(s)) {
-                    result = "YES";
-                    break;
-                }
-            }
-
-            if (result.equals("NO") && strings.size() > 0) {
-                result = null;
-                lines = strings.toArray(new String[strings.size()]);
+            if (s.length() == 0) {
+                result = "YES";
+            } else if (wordLength == s.length()) {
+                result = "NO";
             }
         }
 
