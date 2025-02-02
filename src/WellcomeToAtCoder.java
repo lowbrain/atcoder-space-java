@@ -21,5 +21,6 @@ public class WellcomeToAtCoder {
 
         // 出力
         System.out.println(sum + " " + str);
+        scan.close();
     }
 }
