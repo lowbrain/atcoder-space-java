@@ -1,3 +1,4 @@
+package beginners;
 import java.util.Scanner;
 import java.util.stream.Stream;
 

@@ -1,3 +1,4 @@
+package beginners;
     import java.util.Scanner;
 
     public class ABC085C {
